@@ -1,0 +1,32 @@
+<h1>ユーザー登録</h1>
+<%= form_with model: @user do |form| %>
+    <div>
+        <%= form.label :name, "ユーザー名：" %>
+        <%= form.text_field :name %>
+    </div>
+    <div>
+        <%= form.label :email, "メールアドレス：" %>
+        <%= form.text_field :email %>
+    </div>
+    <div>
+        <%= form.label :password, "パスワード：" %>
+        <%= form.password_field :password %>
+    </div>
+    <div>
+        <%= form.label :password_confirmation, "パスワード（確認）：" %>
+        <%= form.password_field :password_confirmation %>
+    </div>
+    <div><%= form.submit "登録" %></div>
+<% end %>
+
+<!--
+ <h1>勤怠一覧</h1>
+<div>
+<span>10月1日</span>
+<span>7:56 - 18:03</span>
+</div>
+<div>
+<span>10月2日</span>
+<span>7:50 - 18:30</span>
+</div>
+-->
