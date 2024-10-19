@@ -1,0 +1,15 @@
+<h1>勤怠管理</h1>
+<p>こんにちは、<%= current_user.name %>さん</p>
+
+<%= form_with model: @work, url: works_path, method: :post do |f| %>
+<%= f.submit "出勤" %>
+<% end %>
+
+<% if @current_work %>
+    <%= form_with model: @current_work, url: work_path(@current_work), method: :patch do |f| %>
+        <%= f.submit "退勤", class: 'time-btn' %>
+    <% end %>
+<% else %>
+    <button class="time-btn time-btn--disabled" disabled>退勤</button>
+<% end %>
+

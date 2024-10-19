@@ -7,15 +7,18 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
+    <%= javascript_importmap_tags "application" %>
   </head>
 
   <body>
 
     <nav class="nav">
         <ul>
+            <li><%= link_to "TOP", root_path %></li>
+            <li><%= link_to "勤怠状況", works_path %></li>
             <% if logged_in? %>
             <li><%= link_to "ログアウト", logout_path, data: { turbo_method: :delete, turbo_confirm: " 本当にログアウトしますか？"} %></li>
+            <li><%= link_to "アカウント設定", user_path(current_user) %></li>
             <% else %>
             <li><%= link_to "ログイン", login_path %></li>
             <li><%= link_to "新規登録", signup_path %></li>
@@ -23,24 +26,14 @@
         </ul>
     </nav>
 
-    <!--presentは存在チェック-->
-    <!--配列の場合-->
-    <% if flash[:errors].present? %>
-        <% flash[:errors].each do |message| %>
-            <p class="errors"><%= message %></p>
+    <% flash.each do |key, message| %>
+      <% if message.is_a?(Array) %>
+        <% message.each do |msg| %>
+          <p class="<%= key %>"><%= msg %></p>
         <% end %>
-    <% end %>
-    <!--配列でない場合-->
-    <% if flash[:notice].present? %>
-            <p class="notice"><%= flash[:notice] %></p>
-    <% end %>
-    <!---->
-    <% if flash[:alert].present? %>
-            <p class="notice"><%= flash[:alert] %></p>
-    <% end %>
-    <!---->
-    <% if flash.now[:error].present? %>
-            <p class="notice"><%= flash.now[:error] %></p>
+      <% else %>
+          <p class="<%= key %>"><%= message %></p>
+      <% end %>
     <% end %>
     <%= yield %>
   </body>

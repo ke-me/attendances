@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  start_time: 2024-10-14 15:54:40
+  end_time: 2024-10-14 15:54:40
+  work_hours: 9.99
+  status: MyString
+
+two:
+  user: two
+  start_time: 2024-10-14 15:54:40
+  end_time: 2024-10-14 15:54:40
+  work_hours: 9.99
+  status: MyString

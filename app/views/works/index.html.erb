@@ -1,0 +1,30 @@
+<h1>今月の勤務状況</h1>
+<table>
+    <thead>
+        <tr>
+            <th>日付</th>
+            <th>出勤</th>
+            <th>退勤</th>
+            <th>勤務時間</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @works.each do |work| %>
+        <tr>
+            <td><%= l work.start_time, format: :date %></td>
+            <td><%= l work.start_time %></td>
+            <td><%= l work.end_time if work.end_time %></td>
+            <td>
+                <% if work.end_time %>
+                <% if ((work.end_time - work.start_time) / 3600).to_i != 0 %>
+                <%= ((work.end_time - work.start_time) / 3600).to_i %>時間
+                <% end %>
+                <%= ((work.end_time - work.start_time) % 3600 /60).to_i %>分
+                <% else %>
+                -
+                <% end %>
+            </td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
