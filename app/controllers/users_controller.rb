@@ -3,6 +3,11 @@ class UsersController < ApplicationController
   before_action :set_user,only: [:edit, :update, :show, :destroy]
   before_action :require_user, except: [:new, :create]
   before_action :require_same_user, only: [:edit, :update, :destroy]
+
+  def index
+    @users = User.all
+  end
+
   def new
     @user = User.new
   end
@@ -12,8 +17,8 @@ class UsersController < ApplicationController
 
     if @user.save
       flash[:notice] = "登録が完了しました"
-      # log_in @user
-      redirect_to users_complete_path
+      log_in @user
+      redirect_to @user
     else
       # render :newだと動かない
       flash[:errors] = @user.errors.full_messages
@@ -21,9 +26,9 @@ class UsersController < ApplicationController
     end
   end
 
-  def complete
-    # 完了画面の処理（特に何もしなくてよい）
-  end
+  # def complete
+  #   # 完了画面の処理（特に何もしなくてよい）
+  # end
 
   def show
   end

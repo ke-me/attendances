@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       log_in(@user)
       # リダイレクト先後ほど変更
       # ↓あってる？
-      redirect_to user_path(@user)
+      redirect_to root_path
     else
       flash.now[:error] = "ログインに失敗しました"
       # 何これ↓

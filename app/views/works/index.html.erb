@@ -1,11 +1,19 @@
 <h1>今月の勤務状況</h1>
-<table>
+            <% if params[:edit] %>
+<%= link_to "編集モードを閉じる", works_path, class: 'link-secondary' %>
+            <% else %>
+<%= link_to "編集モード", works_path(edit: true), class: 'link-secondary' %>
+            <% end %>
+<table class="table">
     <thead>
         <tr>
             <th>日付</th>
             <th>出勤</th>
             <th>退勤</th>
             <th>勤務時間</th>
+            <% if params[:edit] %>
+            <th></th>
+            <% end %>
         </tr>
     </thead>
     <tbody>
@@ -24,6 +32,12 @@
                 -
                 <% end %>
             </td>
+            <% if params[:edit] %>
+            <td>
+                <%= link_to "編集", edit_work_path(work), class: 'btn btn-outline-primary' %>
+                <%= link_to "削除", work_path(work), class: 'btn btn-outline-secondary',  method: :delete, data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' } %>
+            </td>
+            <% end %>
         </tr>
         <% end %>
     </tbody>

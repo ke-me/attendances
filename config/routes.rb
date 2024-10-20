@@ -12,12 +12,12 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
 
-  get 'users/complete', to: 'users#complete'
+  # get 'users/complete', to: 'users#complete'
   get 'signup', to: 'users#new'
-  resources :users, only: [:create, :show, :edit, :update, :destroy]
+  resources :users, only: [:index, :create, :show, :edit, :update, :destroy]
 
   # get 'works/index'
   # get 'works/create'
   # get 'works/update'
-  resources :works, only: [:index, :create, :update]
+  resources :works, only: [:index, :create, :edit, :update, :destroy]
 end

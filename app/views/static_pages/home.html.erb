@@ -1,15 +1,28 @@
 <h1>勤怠管理</h1>
 <p>こんにちは、<%= current_user.name %>さん</p>
 
-<%= form_with model: @work, url: works_path, method: :post do |f| %>
-<%= f.submit "出勤" %>
-<% end %>
-
 <% if @current_work %>
-    <%= form_with model: @current_work, url: work_path(@current_work), method: :patch do |f| %>
-        <%= f.submit "退勤", class: 'time-btn' %>
-    <% end %>
+<p>出勤中</p>
+    <div class="d-flex flex-row mb-2">
+        <div class="p-2">
+            <button class="btn btn-dark" disabled>出勤</button>
+        </div>
+        <div class="p-2">
+            <%= form_with model: @current_work, url: work_path(@current_work), method: :patch do |f| %>
+                <%= f.submit "退勤", class: 'btn btn-success' %>
+            <% end %>
+        </div>
+    </div>
 <% else %>
-    <button class="time-btn time-btn--disabled" disabled>退勤</button>
+    <div class="d-flex flex-row mb-2">
+        <div class="p-2">
+            <%= form_with model: @work, url: works_path, method: :post do |f| %>
+                <%= f.submit "出勤", class: 'btn btn-dark' %>
+            <% end %>
+        </div>
+        <div class="p-2">
+            <button class="btn btn-success" disabled>退勤</button>
+        </div>
+    </div>
 <% end %>
 
