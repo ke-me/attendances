@@ -2,7 +2,11 @@ class WorksController < ApplicationController
   before_action :require_user
   def index
     # @works = Work.where(user_id: current_user.id)
-    @works = current_user.works
+    # @works = current_user.works.order(start_time: :asc)
+    
+    @month = params[:month] ? Date.parse(params[:month]) : Time.current.beginning_of_month
+        # date = Date.parse(params[:month])
+      @works = current_user.works.where(start_time: @month..@month.end_of_month)
   end
 
   def create
