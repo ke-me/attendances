@@ -1,12 +1,16 @@
 <h1><%= @month.strftime("%m").to_i %>月の勤務状況</h1>
-            <% if params[:edit] %>
+
+<div class="mb-5 works-btnWrap">
+    <div>
+        <%= link_to "前月", works_path(month: @month.prev_month), class: 'link-dark' %>
+        <%= link_to "次月", works_path(month: @month.next_month), class: 'link-dark' if @month != Time.current.beginning_of_month %>
+    </div>
+<% if params[:edit] %>
 <%= link_to "編集モードを閉じる", works_path, class: 'link-secondary' %>
-            <% else %>
+<% else %>
 <%= link_to "編集モード", works_path(edit: true), class: 'link-secondary' %>
-            <% end %>
-<div>
-<%= link_to "前月", works_path(month: @month.prev_month) %>
-<%= link_to "次月", works_path(month: @month.next_month) if @month != Time.current.beginning_of_month %>
+<% end %>
+</div>
 
 <table class="table">
     <thead>
