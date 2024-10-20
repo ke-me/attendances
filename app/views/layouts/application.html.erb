@@ -20,15 +20,16 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item"><%= link_to "TOP", root_path, class: 'nav-link' %></li>
               <li class="nav-item"><%= link_to "勤怠状況", works_path, class: 'nav-link' %></li>
               <% if logged_in? %>
-              <li class="nav-item"><%= link_to "ログアウト", logout_path, method: :delete, class: 'nav-link', data: { turbo_method: :delete, turbo_confirm: " 本当にログアウトしますか？"} %></li>
+              <li class="nav-item"><%= link_to "ログアウト", logout_path, method: :delete, class: 'nav-link', data: { confirm: " 本当にログアウトしますか？"} %></li>
+              <!--<li class="nav-item"><%= link_to "ログアウト", logout_path, method: :delete, class: 'nav-link', data: { turbo_method: :delete, turbo_confirm: " 本当にログアウトしますか？"} %></li>-->
               <li class="nav-item"><%= link_to "アカウント設定", user_path(current_user), class: 'nav-link' %></li>
               <% else %>
               <li class="nav-item"><%= link_to "ログイン", login_path, class: 'nav-link' %></li>
               <li class="nav-item"><%= link_to "新規登録", signup_path, class: 'nav-link' %></li>
               <% end %>
+              <li class="nav-item"><%= link_to "ユーザー一覧", users_path, class: 'nav-link' %></li>
           </ul>
     </div>
   </div>

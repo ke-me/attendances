@@ -9,7 +9,7 @@
         </div>
         <div class="p-2">
             <%= form_with model: @current_work, url: work_path(@current_work), method: :patch do |f| %>
-                <%= f.submit "退勤", class: 'btn btn-success' %>
+                <%= f.submit "退勤", class: 'btn btn-dark' %>
             <% end %>
         </div>
     </div>
@@ -21,7 +21,7 @@
             <% end %>
         </div>
         <div class="p-2">
-            <button class="btn btn-success" disabled>退勤</button>
+            <button class="btn btn-dark" disabled>退勤</button>
         </div>
     </div>
 <% end %>
